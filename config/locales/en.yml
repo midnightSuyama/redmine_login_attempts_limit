@@ -1,0 +1,10 @@
+en:
+  settings:
+    attempts_limit: "Attempts Limit"
+    block_minutes: "Block Minutes"
+    block_clear: "Block Clear"
+    clear: "Clear"
+    block_clear_success: "Successful clear."
+    block_clear_error: "Failed to clear."
+  errors:
+    blocked: "This account has been blocked, please try again later."

@@ -1,0 +1,26 @@
+<table>
+  <tbody>
+    <tr>
+      <th><%= l('settings.attempts_limit') %></th>
+      <td><%= text_field_tag 'settings[attempts_limit]', settings[:attempts_limit] %></td>
+    </tr>
+    <tr>
+      <th><%= l('settings.block_minutes') %></th>
+      <td><%= text_field_tag 'settings[block_minutes]', settings[:block_minutes] %></td>
+    </tr>
+    <tr>
+      <th><%= l('settings.block_clear') %></th>
+      <td><%= link_to (button_tag l('settings.clear')), :login_attempts_limit_clear, method: :post, remote: true, id: 'block-clear' %></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  $(function(){
+    $('#block-clear').on('ajax:success', function(e, data, status, xhr){
+      alert("<%= l('settings.block_clear_success') %>")
+    }).on('ajax:error', function(e, xhr, status, error){
+      alert("<%= l('settings.block_clear_error') %>")
+    })
+  })
+</script>
