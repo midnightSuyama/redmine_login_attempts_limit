@@ -1,5 +1,7 @@
 # RedmineLoginAttemptsLimit
 
+[![Build Status](https://travis-ci.org/midnightSuyama/redmine_login_attempts_limit.svg?branch=master)](https://travis-ci.org/midnightSuyama/redmine_login_attempts_limit)
+
 Login attempts limit plugin for Redmine
 
 ## Installation
