@@ -6,7 +6,7 @@ Login attempts limit plugin for Redmine
 
 ## Installation
 
-Copy your plugin directory into `#{RAILS_ROOT}/plugins`.
+Copy your plugin directory into `#{RAILS_ROOT}/plugins/login_attempts_limit`.
 
 ## Features
 
