@@ -2,9 +2,13 @@ en:
   settings:
     attempts_limit: "Attempts Limit"
     block_minutes: "Block Minutes"
+    blocked_notification: "Blocked Notification"
     block_clear: "Block Clear"
     clear: "Clear"
     block_clear_success: "Successful clear."
     block_clear_error: "Failed to clear."
   errors:
     blocked: "This account has been blocked, please try again later."
+  mailer:
+    account_blocked_subject: "Account Blocked"
+    account_blocked_body: "Account Blocked: %{login}\n\nPlease try again later."

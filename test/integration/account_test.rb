@@ -4,7 +4,7 @@ class AccountTest < Redmine::IntegrationTest
   fixtures :users, :email_addresses
 
   def setup
-    Setting.plugin_login_attempts_limit[:attempts_limit] = '3'
+    Setting.plugin_redmine_login_attempts_limit[:attempts_limit] = '3'
     User.anonymous
   end
   

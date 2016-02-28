@@ -24,7 +24,7 @@ module RedmineLoginAttemptsLimit
       end
 
       def attempts_limit
-        limit = Setting.plugin_login_attempts_limit[:attempts_limit].to_i
+        limit = Setting.plugin_redmine_login_attempts_limit[:attempts_limit].to_i
         limit > 1 ? limit : 1
       end
       
@@ -42,7 +42,7 @@ module RedmineLoginAttemptsLimit
       end
       
       def clean_expired
-        expire = Time.now - (Setting.plugin_login_attempts_limit[:block_minutes].to_i * 60)
+        expire = Time.now - (Setting.plugin_redmine_login_attempts_limit[:block_minutes].to_i * 60)
         @@status.delete_if {|k, v| v[:updated_at] < expire }
       end
     end

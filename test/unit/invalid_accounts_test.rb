@@ -10,8 +10,8 @@ class InvalidAccountsTest < ActiveSupport::TestCase
   include RedmineLoginAttemptsLimit
 
   def setup
-    Setting.plugin_login_attempts_limit[:attempts_limit] = '3'
-    Setting.plugin_login_attempts_limit[:block_minutes]  = '60'
+    Setting.plugin_redmine_login_attempts_limit[:attempts_limit] = '3'
+    Setting.plugin_redmine_login_attempts_limit[:block_minutes]  = '60'
   end
   
   def teardown
@@ -34,10 +34,10 @@ class InvalidAccountsTest < ActiveSupport::TestCase
   end
 
   def test_attempts_limit
-    Setting.plugin_login_attempts_limit[:attempts_limit] = '10'
+    Setting.plugin_redmine_login_attempts_limit[:attempts_limit] = '10'
     assert_equal 10, InvalidAccounts.attempts_limit
     
-    Setting.plugin_login_attempts_limit[:attempts_limit] = '0'
+    Setting.plugin_redmine_login_attempts_limit[:attempts_limit] = '0'
     assert_equal 1, InvalidAccounts.attempts_limit
   end
 
