@@ -1,0 +1,14 @@
+es:
+  settings:
+    attempts_limit: "Límite de intentos"
+    block_minutes: "Minutos de bloqueo"
+    blocked_notification: "Notificación de bloqueo"
+    block_clear: "Eliminación de bloqueo"
+    clear: "Eliminar"
+    block_clear_success: "Eliminación de bloqueo satisfactoria."
+    block_clear_error: "Error al eliminar el bloqueo."
+  errors:
+    blocked: "Esta cuenta ha sido bloqueada, por favor inténtelo de nuevo más tarde."
+  mailer:
+    account_blocked_subject: "Cuenta bloqueada"
+    account_blocked_body: "Cuenta bloqueada: %{login}\n\nPor favor inténtelo de nuevo más tarde."
