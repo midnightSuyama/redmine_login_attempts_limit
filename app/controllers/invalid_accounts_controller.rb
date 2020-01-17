@@ -1,7 +1,7 @@
 class InvalidAccountsController < ApplicationController
   unloadable
 
-  before_filter :require_admin
+  before_action :require_admin
   
   def clear
     RedmineLoginAttemptsLimit::InvalidAccounts.clear
