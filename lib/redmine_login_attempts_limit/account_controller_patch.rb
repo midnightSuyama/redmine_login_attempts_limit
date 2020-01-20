@@ -1,24 +1,15 @@
 module RedmineLoginAttemptsLimit
   module AccountControllerPatch
-    def self.included(base)
-      base.class_eval do
-        alias_method_chain :password_authentication, :login_attempts_limit
-        alias_method_chain :invalid_credentials, :login_attempts_limit
-        alias_method_chain :successful_authentication, :login_attempts_limit
-        alias_method_chain :lost_password, :login_attempts_limit
-      end
-    end
-
-    def password_authentication_with_login_attempts_limit
+    def password_authentication
       InvalidAccounts.clean_expired
       if InvalidAccounts.blocked? params[:username]
         flash.now[:error] = l('errors.blocked')
       else
-        password_authentication_without_login_attempts_limit
+        super
       end
     end
 
-    def invalid_credentials_with_login_attempts_limit
+    def invalid_credentials
       InvalidAccounts.update(params[:username])
       if Setting.plugin_redmine_login_attempts_limit[:blocked_notification]
         if InvalidAccounts.blocked? params[:username]
@@ -26,16 +17,16 @@ module RedmineLoginAttemptsLimit
           Mailer.account_blocked(user).deliver unless user.nil?
         end
       end
-      invalid_credentials_without_login_attempts_limit
+      super
       flash.now[:error] = l('errors.blocked') if InvalidAccounts.blocked? params[:username]
     end
 
-    def successful_authentication_with_login_attempts_limit(user)
+    def successful_authentication(user)
       InvalidAccounts.clear(user.login)
-      successful_authentication_without_login_attempts_limit(user)
+      super
     end
 
-    def lost_password_with_login_attempts_limit
+    def lost_password
       if Setting.lost_password? && request.post?
         token = Token.find_token("recovery", params[:token].to_s)
         if token && (!token.expired?)
@@ -46,7 +37,11 @@ module RedmineLoginAttemptsLimit
           end
         end
       end
-      lost_password_without_login_attempts_limit
+      super
     end
   end
+end
+
+RedmineLoginAttemptsLimit::AccountControllerPatch.tap do |mod|
+  AccountController.send :prepend, mod unless AccountController.include?(mod)
 end
