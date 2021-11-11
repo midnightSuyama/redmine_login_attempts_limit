@@ -1,5 +1,4 @@
 class InvalidAccountsController < ApplicationController
-  unloadable
 
   before_action :require_admin
   
