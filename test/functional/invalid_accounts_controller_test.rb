@@ -8,15 +8,15 @@ class InvalidAccountsControllerTest < ActionController::TestCase
   end
   
   def test_clear
-    xhr :post, :clear
+    post :clear, xhr: true
     assert_response :unauthorized
 
     @request.session[:user_id] = 1
-    xhr :post, :clear
+    post :clear, xhr: true
     assert_response :success
 
     @request.session[:user_id] = 2
-    xhr :post, :clear
+    post :clear, xhr: true
     assert_response :forbidden
   end
 end
